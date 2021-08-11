@@ -96,7 +96,8 @@ public class Empregado {
 
   @Override
   public String toString() {
-    return "Id: " + id + '\n' + 
+    return "+--------------------------------------------+ \n" + 
+      "\n Id: " + id + '\n' + 
       "Nome: "  + nome + '\n' +
       "Sobrenome: " + sobrenome + '\n' +
       "Contribui ao sindicato: " + this.getContribuiSindicato() + '\n' +
@@ -104,7 +105,8 @@ public class Empregado {
       "Método de pagamento: " + pagamentoMetodo + '\n' +
       "Taxa Sindical: " + taxaSindical + '\n' + 
       "Id sindicato: " + idSindical + '\n' + 
-      "Agenda de Pagamento: " + agendaPagamento + '\n';
+      "Agenda de Pagamento: " + agendaPagamento + '\n' +
+      "+--------------------------------------------+ \n";
   }
 }
 

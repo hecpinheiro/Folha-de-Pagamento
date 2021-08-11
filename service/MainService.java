@@ -36,6 +36,7 @@ public class MainService {
   private void listarPagamentos() {
     for(HistoricoDeSalario x : historicoSalario) {
       System.out.println(x);
+      System.out.println("----------------------------------------------");
     }
   }
 
@@ -161,36 +162,51 @@ public class MainService {
   }
 
   public void lancarVenda() {
+    
+    System.out.println("+--------------------------------------------+");
+    System.out.println("|        LANÇAR UM RESULTADO DE VENDA        |");
+    System.out.println("+--------------------------------------------+");
+    
     String id = obterEmpregadoId();
     if(id.equals("NOT_FOUND")) return;
 
-    System.out.print("\nData da venda (dd/mm/yyyy): ");
+    System.out.println("| Data da venda (dd/mm/yyyy):                |");
+    System.out.print("> ");
     String data = input.nextLine();
 
-    System.out.print("\nValor da venda: ");
+    System.out.println("| Valor da venda:                            |");
+    System.out.print("> ");
     double vendaValor = Double.parseDouble(input.nextLine());
 
     Vendas venda = vendasService.criarVendas(id, data, vendaValor);
     vendas.add(venda);
-    System.out.println("Venda adicionado!");
+    System.out.println("| Venda adicionada!                          |");
   }
 
   public void lancarTaxaServico() {
+    
+    System.out.println("+--------------------------------------------+");
+    System.out.println("|         LANÇAR UM TAXA DE SERVIÇO          |");
+    System.out.println("+--------------------------------------------+");
+
     String id = obterEmpregadoId();
     if(id.equals("NOT_FOUND")) return;
 
-    System.out.print("\nDia trabalhado (dd/mm/yyyy): ");
+    System.out.println("| Data à adicionar a taxa de serviço (dd/mm/yyyy): |");
+    System.out.print("> ");
     String dia = input.nextLine();
 
-    System.out.print("\nDescrição da Taxa de Serviço: ");
+    System.out.println("| Descrição da Taxa de Serviço:              |");
+    System.out.print("> ");
     String taxaNome = input.nextLine();
 
-    System.out.print("\nValor da taxa de serviço: ");
+    System.out.println("| Valor da taxa de serviço:                  |");
+    System.out.print("> ");
     double taxaValor = Double.parseDouble(input.nextLine());
 
     TaxaDeServico taxaDeServico = taxaService.criarTaxas(id, dia, taxaValor, taxaNome);
     taxaDeServicos.add(taxaDeServico);
-    System.out.println("Lançamento concluído!");
+    System.out.println("| Lançamento concluído!                      |");
   }
 
   private String obterEmpregadoId() {
@@ -206,18 +222,25 @@ public class MainService {
   }
 
   public void lancarCartaoPonto() {
+
+    System.out.println("+--------------------------------------------+");
+    System.out.println("|         LANÇAR UM CARTÃO DE PONTOS         |");
+    System.out.println("+--------------------------------------------+");
+
     String id = obterEmpregadoId();
     if(id.equals("NOT_FOUND")) return;
 
-    System.out.print("\nDia trabalhado (dd/mm/yyyy): ");
+    System.out.println("| Dia trabalhado (dd/mm/yyyy):               |");
+    System.out.print("> ");
     String dia = input.nextLine();
 
-    System.out.print("\nHoras trabalhadas: ");
+    System.out.println("| Horas trabalhadas:                         | ");
+    System.out.print("> ");
     double horasTrabalhadas = Double.parseDouble(input.nextLine());
 
     CartaoDePonto cartaoDePonto = cartaoDePontoService.criarCartaoPonto(id, dia, horasTrabalhadas);
     cartoesDePonto.add(cartaoDePonto);
-    System.out.println("Lançamento concluído!");
+    System.out.println("| Lançamento concluído!                      |");
   }
 
   public void executarFolhaDePagamento(){
@@ -239,25 +262,35 @@ public class MainService {
   }
 
   public void removerEmpregado() {
-    System.out.print("ID do Empregado que à ser removido: ");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("|             REMOVER EMPREGADO              |");
+    System.out.println("+--------------------------------------------+");
+
+    System.out.println("| ID do Empregado que à ser removido:        |");
+    System.out.print("> ");
+    //System.out.println("+--------------------------------------------+");
+
     String id = input.nextLine().trim();
     
     boolean result = empregados.removeIf(empregado -> (empregado.getId().equals(id)));
 
     if(result) {
-      System.out.println("Empregado com ID: " + id + " removido!");
+      System.out.println("+--------------------------------------------+");  
+      System.out.println("| Empregado com ID: " + id + " removido!");
       return;
     }
-    System.out.println("Empregado com ID: " + id + " não existe!");
+    System.out.println("+--------------------------------------------+");  
+    System.out.println("| Empregado com ID: " + id + " não existe!");
     
   }
 
   public void adicionarEmpregadoHorista() {
     Empregado dadosBase = obterEmpregado();
 
-    System.out.print("Valor da hora: ");
+    System.out.println("| Valor da hora:                             |");
+    System.out.print("> ");
     double valorDaHora = Double.parseDouble(input.nextLine());
-    System.out.println();
+    
 
     Horista empregado = new Horista(dadosBase.getNome(), 
                                     dadosBase.getSobrenome(), 
@@ -269,15 +302,16 @@ public class MainService {
                                     dadosBase.getTaxaSindical());
     empregados.add(empregado);
 
-    System.out.println("Empregado adicionado!");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("| Empregado adicionado!                      |");
   }
 
   public void adicionarEmpregadoAssalariado() {
     Empregado dadosBase = obterEmpregado();
 
-    System.out.print("Salário mensal: ");
+    System.out.println("| Salário mensal:                            |");
+    System.out.print("> ");
     double salarioMensal = Double.parseDouble(input.nextLine());
-    System.out.println();
 
     Assalariado empregado = new Assalariado(dadosBase.getNome(), 
                                             dadosBase.getSobrenome(), 
@@ -290,19 +324,20 @@ public class MainService {
                                             "MENSALMENTE");
     empregados.add(empregado);
 
-    System.out.println("Empregado adicionado!");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("| Empregado adicionado!                      |");
   }
 
   public void adicionarEmpregadoComissionado() {
     Empregado dadosBase = obterEmpregado();
 
-    System.out.print("Salário mensal: ");
+    System.out.println("| Salário mensal:                            |");
+    System.out.print("> ");
     double salarioMensal = Double.parseDouble(input.nextLine());
-    System.out.println();
 
-    System.out.print("Percentual comissão: ");
+    System.out.println("| Percentual comissão:                       |");
+    System.out.print("> ");
     double percentualComissao = Double.parseDouble(input.nextLine());
-    System.out.println();
 
     Comissionado empregado = new Comissionado(dadosBase.getNome(), 
                                               dadosBase.getSobrenome(), 
@@ -315,30 +350,38 @@ public class MainService {
                                               dadosBase.getTaxaSindical());
     empregados.add(empregado);
 
-    System.out.println("Empregado adicionado!");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("| Empregado adicionado!                      |");
   }
 
   private Empregado obterEmpregado() {
-    System.out.print("Nome do empregado: ");
+    System.out.println("| Nome do empregado:                         |");
+    System.out.print("> ");
     String nome = input.nextLine();
-    System.out.println();
+    //System.out.println();
 
-    System.out.print("Sobrenome do empregado: ");
+    System.out.println("| Sobrenome do empregado:                    |");
+    System.out.print("> ");
     String sobrenome = input.nextLine();
-    System.out.println();
+    //System.out.println();
 
-    System.out.print("Endereço do empregado: ");
+    System.out.println("| Endereço do empregado:                     |");
+    System.out.print("> ");
     String endereco = input.nextLine();
-    System.out.println();
+    //System.out.println();
 
-    System.out.print("Contribui ao sindicato? (S) ou (N): ");
+    System.out.println("| Contribui ao sindicato? (S) ou (N):        |");
+    System.out.print("> ");
     String contribuiSindicato = input.nextLine();
-    System.out.println();
+    //System.out.println();
 
-    System.out.print("Escolha o tipo de pagamento: \n");
-    System.out.print("(1) Cheque pelos correios \n");
-    System.out.print("(2) Cheque em mãos \n");
-    System.out.print("(3) Depósito em conta bancária \n");
+    System.out.println("+--------------------------------------------+");
+    System.out.print("| Escolha o tipo de pagamento:             |\n");
+    System.out.println("+--------------------------------------------+");
+    System.out.print("| (1) Cheque pelos correios                |\n");
+    System.out.print("| (2) Cheque em mãos                       |\n");
+    System.out.print("| (3) Depósito em conta bancária           |\n");
+    System.out.println("+--------------------------------------------+");
     String pagamentoMetodo = "";
     int opcaoPagamento;
     boolean executar = true;
@@ -359,7 +402,8 @@ public class MainService {
                 executar = false;
                 break;
             default:
-                System.out.print("Digite uma opção válida! \n");
+                System.out.print("| Digite uma opção válida.                 |\n");
+                System.out.println("+--------------------------------------------+");
                 break;
         }
     }
@@ -371,11 +415,11 @@ public class MainService {
 
     boolean temSindicato = contribuiSindicato.equals("S") ? true : false;
     if(temSindicato){
-        System.out.print("Digite o seu ID sindical: ");
+        System.out.println("| Digite o seu ID sindical:                  |");
         idSindical = input.nextLine();
         System.out.println();
     
-        System.out.print("Valor da taxa sindical: ");
+        System.out.println("| Valor da taxa sindical:                    |");
         taxaSindical = Double.parseDouble(input.nextLine());
         System.out.println();
     }
