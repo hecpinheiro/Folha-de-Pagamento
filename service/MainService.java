@@ -45,66 +45,93 @@ public class MainService {
     if(id.equals("NOT_FOUND")) return;
     Empregado empregado = empregadoService.getEmpregadoPorId(empregados, id);
 
-    System.out.println("Selecione qual a nova agenda de pagamento:");
-    System.out.println("(1) Mensalmente \n");
-    System.out.println("(2) Semanalmente \n");
-    System.out.println("(3) Bisemanalmente\n");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("|        ALTERAR AGENDA DE PAGAMENTO         |");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("| Selecione qual a nova agenda de pagamento: |");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("| (1) Mensalmente                            |");
+    System.out.println("| (2) Semanalmente                           |");
+    System.out.println("| (3) Bisemanalmente                         |");
+    System.out.println("+--------------------------------------------+");
+    
 
     int novaAgenda = Integer.parseInt(input.nextLine());
     switch(novaAgenda) {
       case 1:
         empregado.setAgendaPagamento("MENSALMENTE");
-        System.out.println("Agenda de pagamente modificada.");
+        System.out.println("+--------------------------------------------+");
+        System.out.println("| Agenda de pagamente modificada             |");
+        System.out.println("+--------------------------------------------+");
         break;
       case 2:
         empregado.setAgendaPagamento("SEMANALMENTE");
-        System.out.println("Agenda de pagamente modificada.");
+        System.out.println("+--------------------------------------------+");
+        System.out.println("| Agenda de pagamente modificada             |");
+        System.out.println("+--------------------------------------------+");
         break;
       case 3:
         empregado.setAgendaPagamento("BISEMANALMENTE");
-        System.out.println("Agenda de pagamente modificada.");
+        System.out.println("+--------------------------------------------+");
+        System.out.println("| Agenda de pagamente modificada             |");
+        System.out.println("+--------------------------------------------+");
         break;
       default:
-        System.out.println("Agenda de pagamente inválida. Nada foi feito.");
+      System.out.println("+--------------------------------------------+");
+      System.out.println("| Agenda de pagamente inválida               |");
+      System.out.println("+--------------------------------------------+");
         break;
     }
   }
 
   public void alterarDados() {
-    
+        
+    System.out.println("+--------------------------------------------------+");
+    System.out.println("|          ALTERAR DADOS DE UM EMPREGADO           |");
+    System.out.println("+--------------------------------------------------+");
+
     String id = obterEmpregadoId();
     if(id.equals("NOT_FOUND")) return;
     Empregado empregado = empregadoService.getEmpregadoPorId(empregados, id);
-    
-    System.out.println("Selecione qual dado do empregado deseja alterar?");
-    System.out.println("(1) Alterar nome \n");
-    System.out.println("(2) Alterar endereço \n");
-    System.out.println("(3) Alterar Método de pagamento\n");
-    System.out.println("(4) Alterar tipo de funcionário \n");
-    System.out.println("(5) Alterar ID sindical \n");
-    System.out.println("(6) Alterar vínculo com o sindicato \n");
-    System.out.println("(7) Alterar taxa sindical \n");
+
+
+    System.out.println("+--------------------------------------------------+");
+    System.out.println("| Selecione qual dado do empregado deseja alterar? |");
+    System.out.println("+--------------------------------------------------+");
+    System.out.println("| (1) Alterar nome                                 |");
+    System.out.println("| (2) Alterar endereço                             |");
+    System.out.println("| (3) Alterar Método de pagamento                  |");
+    System.out.println("| (4) Alterar tipo de funcionário                  |");
+    System.out.println("| (5) Alterar ID sindical                          |");
+    System.out.println("| (6) Alterar vínculo com o sindicato              |");
+    System.out.println("| (7) Alterar taxa sindical                        |");
+    System.out.println("+--------------------------------------------------+");
+    System.out.print("> ");
 
     int opcaoalterar = Integer.parseInt(input.nextLine());
     
     switch(opcaoalterar){
         case 1:
-            System.out.print("Novo nome: ");
+            System.out.print("| Novo nome: ");
             String novoNome = input.nextLine();
             empregado.setNome(novoNome);
-            System.out.println("\nAlteração concluída!");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Alteração concluída!                             |");
+            System.out.println("+--------------------------------------------------+");
             break;
         case 2:
-            System.out.print("Novo sobrenome: ");
+            System.out.print("| Novo sobrenome: ");
             String novoSobrenome = input.nextLine();
             empregado.setSobrenome(novoSobrenome);
-            System.out.println("\nAlteração concluída!");        
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Alteração concluída!                             |");
+            System.out.println("+--------------------------------------------------+");       
             break;             
         case 3:
-            System.out.print("Novo método de pagamento: ");
-            System.out.println("(1) Cheque pelos correios \n");
-            System.out.println("(2) Cheque em mãos \n");
-            System.out.println("(3) Depósito em conta bancária \n");
+            System.out.println("| Novo método de pagamento: ");
+            System.out.println("| (1) Cheque pelos correios ");
+            System.out.println("| (2) Cheque em mãos ");
+            System.out.println("| (3) Depósito em conta bancária ");
             
             String pagamentoMetodo = "";
             int opcaoPagamento;
@@ -131,30 +158,38 @@ public class MainService {
                 }
             }
             empregado.setPagamentoMetodo(pagamentoMetodo);
-            System.out.print("Método de pagamento alterado!\n");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Alteração concluída!                             |");
+            System.out.println("+--------------------------------------------------+");
             break;
         case 4:
             System.out.print("Novo tipo de funcinário: ");
 
             break;
         case 5:
-            System.out.print("Novo ID sindical: ");
+            System.out.print("| Novo ID sindical: ");
             String novoIdSindical = input.nextLine();
             empregado.setIdSindical(novoIdSindical);
-            System.out.println("\nAlteração concluída!");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Alteração concluída!                             |");
+            System.out.println("+--------------------------------------------------+");
             break;             
         case 6:
-            System.out.print("Novo vínculo com o sindicato (S ou N): ");
+            System.out.print("| Novo vínculo com o sindicato (S ou N): ");
             String novoVinculoSindical = input.nextLine();
             boolean temSindicato = novoVinculoSindical.equals("S") ? true : false;
             empregado.setContribuiSindicato(temSindicato);
-            System.out.println("\nAlteração concluída!");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Alteração concluída!                             |");
+            System.out.println("+--------------------------------------------------+");
             break;
         case 7:
-            System.out.print("Nova taxa sindical: ");
+            System.out.print("| Nova taxa sindical: ");
             double novaTaxaSindical = Double.parseDouble(input.nextLine());
             empregado.setTaxaSindical(novaTaxaSindical);
-            System.out.println("\nAlteração concluída!");
+            System.out.println("+--------------------------------------------------+");
+            System.out.println("| Alteração concluída!                             |");
+            System.out.println("+--------------------------------------------------+");
             break;
         default:
             break;   
@@ -244,7 +279,12 @@ public class MainService {
   }
 
   public void executarFolhaDePagamento(){
-    System.out.print("\nDia para executar a Folha de pagamento (dd/mm/yyyy): ");
+    System.out.println("+--------------------------------------------+");
+    System.out.println("|        EXECUTAR A FOLHA DE PAGAMENTO       |");
+    System.out.println("+--------------------------------------------+");
+
+    System.out.println("| Dia para executar a Folha de pagamento (dd/mm/yyyy): ");
+    System.out.print("> ");    
     String dia = input.nextLine();
 
     List<HistoricoDeSalario> lancamentos = pagamentoService.calcularFolha(
@@ -255,8 +295,10 @@ public class MainService {
       taxaDeServicos
     );
 
-    //TODO: exceção pra caso nenhum seja lançado!
-    System.out.println("Folha de pagamento executada com sucesso. Foram feitos " + lancamentos.size() + " lancamentos.");
+   
+    System.out.println("+--------------------------------------------+");  
+    System.out.println("Folha de pagamento executada com sucesso. \nForam feitos " + lancamentos.size() + " lancamentos.");
+    
     historicoSalario.addAll(lancamentos);
     this.listarPagamentos();
   }
